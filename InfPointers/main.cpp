@@ -3,6 +3,8 @@
 #include <string>
 #include <climits>
 
+#define POINTER_DEPTH 10000
+
 using namespace std;
 
 int main()
@@ -23,7 +25,7 @@ int main()
 
 	unsigned long long i;
 	// maybe use ULLONG_MAX?
-	for(i = 2; i <= 1000; i++)
+	for(i = 2; i <= POINTER_DEPTH; i++)
 	{
 		std::string stars = "";
 
