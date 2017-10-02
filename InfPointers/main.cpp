@@ -3,15 +3,13 @@
 #include <string>
 #include <climits>
 
-#define POINTER_DEPTH 100
-
 using namespace std;
 
 int main()
 {
 	ofstream pointerSource("pointers.cpp");
 
-	std::string pstr = "#include <iostream>\n"
+	string pstr = "#include <iostream>\n"
 						"\n"
 						"using namespace std;\n"
 						"\n"
@@ -25,19 +23,23 @@ int main()
 
 	pstr = "";
 
-	unsigned long long i;
+	unsigned long long i, depth;
+
+	cout << "Enter a pointer depth for the generation of pointers.cpp: ";
+	cin >> depth;
+
 	// maybe use ULLONG_MAX?
-	for(i = 2; i <= POINTER_DEPTH; i++)
+	for(i = 2; i <= depth; i++)
 	{
-		std::string stars = "";
+		string stars = "";
 
 		for(unsigned long long j = 1; j <= i; j++)
 		{
 			stars += "*";
 		}
 
-		pstr = "	int" + stars + " p" + std::to_string(i) +
-							" = &p" + std::to_string(i-1) + ";\n";
+		pstr = "	int" + stars + " p" + to_string(i) +
+							" = &p" + to_string(i-1) + ";\n";
 
 		pointerSource << pstr;
 	}
@@ -52,7 +54,7 @@ int main()
 		pstr += "*";
 	}
 
-	pstr += "p" + std::to_string(i) + " << endl;\n" + "	return 0;\n" + "}\n";
+	pstr += "p" + to_string(i) + " << endl;\n" + "	return 0;\n" + "}\n";
 
 	pointerSource << pstr;
 }
