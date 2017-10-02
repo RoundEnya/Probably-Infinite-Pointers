@@ -30,3 +30,9 @@ Thumbs.db
 
 # Folder config file
 Desktop.ini
+
+##################
+# Project Specific
+##################
+
+InfPointers/pointers.cpp

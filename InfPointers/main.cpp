@@ -3,7 +3,7 @@
 #include <string>
 #include <climits>
 
-#define POINTER_DEPTH 10000
+#define POINTER_DEPTH 100
 
 using namespace std;
 
@@ -23,6 +23,8 @@ int main()
 	pointerSource << pstr;
 
 
+	pstr = "";
+
 	unsigned long long i;
 	// maybe use ULLONG_MAX?
 	for(i = 2; i <= POINTER_DEPTH; i++)
@@ -34,23 +36,23 @@ int main()
 			stars += "*";
 		}
 
-		std::string nstr = "	int" + stars + " p" + std::to_string(i) +
+		pstr = "	int" + stars + " p" + std::to_string(i) +
 							" = &p" + std::to_string(i-1) + ";\n";
 
-		pointerSource << nstr;
+		pointerSource << pstr;
 	}
-
-	pointerSource << "	cout << ";
 
 	i--;
 
+	pstr = "";
+	pstr += "	cout << ";
+
 	for(unsigned long long j = 1; j <= i; j++)
 	{
-		pointerSource << "*";
+		pstr += "*";
 	}
 
-	pointerSource << "p" + std::to_string(i) + " << endl;\n";
+	pstr += "p" + std::to_string(i) + " << endl;\n" + "	return 0;\n" + "}\n";
 
-	pointerSource << "	return 0;\n";
-	pointerSource << "}\n";
+	pointerSource << pstr;
 }
